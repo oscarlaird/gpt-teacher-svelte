@@ -35,7 +35,8 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: 'public/build/bundle.js',
+		publicPath: 'gpt-teacher-svelte',
 	},
 	plugins: [
 		svelte({
