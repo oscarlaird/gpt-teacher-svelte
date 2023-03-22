@@ -1,25 +1,36 @@
 <script>
+  import { onMount } from 'svelte';
   import TopicTile from './TopicTile.svelte';
 
-  // Define a dummy topic with sample data
-  const dummyTopic = {
-    name: 'Puebloans',
-    quizCount: 5,
-    flashcardCount: 8,
-    backgroundImage: '/images/mesa_verde.jpg' // assumes the image is stored in the public/images folder
+  let topics = [];
+
+  const fetchTopics = async () => {
+    try {
+      const response = await fetch('http://api.vinca.study/get_topics');
+      const data = await response.json();
+      topics = data;
+    } catch (error) {
+      console.error('Error fetching topics:', error);
+    }
   };
 
-  // Create an array of topics with the dummy topic
-  const topics = [dummyTopic];
+  onMount(fetchTopics);
 </script>
+
 <div class="topics-container">
-  <!-- Loop through the topics array and create a TopicTile for each topic -->
   {#each topics as topic}
-    <TopicTile
-      name={topic.name}
-      quizCount={topic.quizCount}
-      flashcardCount={topic.flashcardCount}
-      backgroundImage={topic.backgroundImage}
-    />
+	  <TopicTile {topic} />
   {/each}
 </div>
+
+<style>
+  .topics-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+</style>
+

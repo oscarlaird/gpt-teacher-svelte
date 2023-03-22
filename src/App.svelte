@@ -1,4 +1,7 @@
 <script>
-  import Home from './Home.svelte';
+	import Router from 'svelte-spa-router'
+	import routes from './routes'
+
 </script>
-<Home />
+
+<Router {routes} />

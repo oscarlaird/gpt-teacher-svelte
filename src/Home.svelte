@@ -3,7 +3,7 @@
   import Topics from './Topics.svelte';
   import Footer from './Footer.svelte';
   
-  const courseName = 'AP US History'; // example course name
+  const courseName = 'AP United States History'; // example course name
 </script>
 <Header courseName={courseName} />
 <Topics />

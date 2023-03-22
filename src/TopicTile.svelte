@@ -1,58 +1,42 @@
 <script>
-  export let title;
-  export let quizCount;
-  export let flashcardCount;
-  export let backgroundImageUrl;
+  import { push } from 'svelte-spa-router';
+  export let topic;
+
+  const handleClick = () => {
+    push(`/topic/${topic.id}`);
+  };
 </script>
-<div class="topic-tile">
-  <div class="topic-tile-left" style="background-image: url('/images/mesa_verde.jpg')">
-    <h2>{title}</h2>
-  </div>
-  <div class="topic-tile-right">
-    <button>Quiz ({quizCount})</button>
-    <button>Add Flashcards ({flashcardCount})</button>
-    <button>Overview</button>
-  </div>
+
+<div
+  class="topic-tile"
+  on:click={handleClick}
+  style={`background-image: url(/images/${topic.image_name})`}
+>
+  <h2>{topic.name}</h2>
 </div>
+
+
 <style>
   .topic-tile {
-    display: flex;
+    width: 100%;
+    max-width: 300px;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
+    border: 1px solid #000;
   }
-  
-  .topic-tile-left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
+
+  .topic-tile h2 {
+    margin: 0;
     padding: 20px;
-    color: #fff;
+    color: #000;
     font-size: 24px;
     background-size: cover;
     background-position: center;
-  }
-  
-  .topic-tile-left h2 {
-    margin: 0;
-  }
-  
-  .topic-tile-right {
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
-    background-color: #f5f5f5;
-  }
-  
-  .topic-tile-right button {
-    margin-right: 10px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
   }
 </style>
+
