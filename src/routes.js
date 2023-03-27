@@ -11,11 +11,13 @@ import TestTest from './TestTest.svelte';
 import ArticleTest from './ArticleTest.svelte';
 import TopicTileTest from './TopicTileTest.svelte';
 import TopicChooserTest from './TopicChooserTest.svelte';
+import LoginButtonTest from './LoginButtonTest.svelte';
+import Home from './Home.svelte';
 
 export default {
 	// exact path
-	// '/': Home,
-	// '/home': Home,
+	'/': Home,
+	'/home': Home,
 	// '/topic/:id': TopicPage,
 	// '/quiz/:id': QuizPage,
 	'/test_components/flashcard': FlashcardTest,
@@ -26,5 +28,6 @@ export default {
 	// '/test_components/test': TestTest,
 	'/test_components/topic_tile': TopicTileTest,
 	'/test_components/topic_chooser': TopicChooserTest,
+	'/test_components/login_button': LoginButtonTest,
 	'*': NotFound,
 }
