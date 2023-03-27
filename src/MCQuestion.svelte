@@ -1,36 +1,69 @@
 <script>
-  export let question;
-  export let answers;
-  export let correctAnswerIndex;
-  export let questionIndex;
+function applyPermutation(arr, perm) {
+  const result = new Array(arr.length);
+
+  for (let i = 0; i < arr.length; i++) {
+    result[perm[i]] = arr[i];
+  }
+
+  return result;
+}
+// Example usage:
+// const originalArray = ['a', 'b', 'c', 'd', 'e'];
+// const permutation = [3, 0, 4, 1, 2];
+// const permutedArray = applyPermutation(originalArray, permutation);
+// 
+// console.log(permutedArray); // Output: ['b', 'd', 'e', 'a', 'c']
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
+
+  export let questionObj;
+  const question = questionObj.question;
+  const answers = questionObj.answers;
+  export let quizMode; // in quiz mode the selected answer is automatically confirmed
+  export let correct;
+  let confirmed = false;
+  const permutation = Array.from({length: answers.length}, (_, i) => i).sort(() => Math.random() - 0.5);
+  const correctAnswerIndex = permutation[0]
+  const shuffled_answers = applyPermutation(answers, permutation)
+
 
   let selectedAnswer = null;
-  let isAnswered = false;
-
+  $: correct = selectedAnswer===correctAnswerIndex
   const selectAnswer = (index) => {
-    if (!isAnswered) {
+    if (!confirmed) {
       selectedAnswer = index;
-      isAnswered = true;
+      if (quizMode) {
+	      confirmed = true
+	      dispatch('confirmed')
+      }
     }
   };
 </script>
 
+<div class="mc-question-wrapper">
 <div class="mc-question">
   <p>{question}</p>
   <ul>
-    {#each answers as answer, index}
+    {#each shuffled_answers as answer, index}
       <li
-        class:correct={isAnswered && index === correctAnswerIndex}
-        class:wrong={isAnswered && index === selectedAnswer && index !== correctAnswerIndex}
-        on:click={() => selectAnswer(index)}
-      >
+        class:correct={confirmed && index === correctAnswerIndex}
+        class:wrong={confirmed && index === selectedAnswer && index !== correctAnswerIndex}
+        class:chosen={!confirmed && index === selectedAnswer}
+        on:click={() => selectAnswer(index)} >
         {answer}
       </li>
     {/each}
   </ul>
 </div>
+</div>
 
 <style>
+  .mc-question p {
+    font-size: 1.4em;
+    padding: 5px 10px;
+  }
+
   .mc-question ul {
     list-style-type: none;
     padding: 0;
@@ -39,9 +72,10 @@
   .mc-question li {
     cursor: pointer;
     padding: 5px 10px;
-    margin-bottom: 5px;
+    margin: 7px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 1.2em;
   }
 
   .mc-question li.correct {
@@ -51,5 +85,18 @@
   .mc-question li.wrong {
     background-color: #ffcccb;
   }
+
+  .mc-question li.chosen {
+	  background-color: yellow;
+  }
+  .mc-question-wrapper {
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  padding: 10px;
+  width: 80vw;
+  max-width: 900px;
+  border-radius: 20px;
+  margin: 10px;
+  }
+
 </style>
 

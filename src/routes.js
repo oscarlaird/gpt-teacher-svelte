@@ -3,12 +3,24 @@ import TP2 from './TP2.svelte';
 import Home from './Home.svelte';
 import NotFound from './NotFound.svelte';
 import QuizPage from './QuizPage.svelte';
+import FlashcardTest from './FlashcardTest.svelte';
+import FlashcardReviewTest from './FlashcardReviewTest.svelte';
+import MCQuestionTest from './MCQuestionTest.svelte';
+import QuizTest from './QuizTest.svelte';
+import TestTest from './TestTest.svelte';
 
 export default {
 	// exact path
 	'/': Home,
+	'/home': Home,
 	'/topic/:id': TopicPage,
 	'/quiz/:id': QuizPage,
+	'/test_components/flashcard': FlashcardTest,
+	'/test_components/flashcard_review': FlashcardReviewTest,
+	'/test_components/mc': MCQuestionTest,
+	'/test_components/quiz': QuizTest,
+	'/test_components/test': TestTest,
+
 	'*': NotFound,
 
 }
