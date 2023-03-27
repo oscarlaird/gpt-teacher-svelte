@@ -10,7 +10,7 @@
 <div
   class="topic-tile"
   on:click={handleClick}
-  style={`background-image: url(/images/${topic.image_name})`}
+  style={`background-image: url(/images/apush/${topic.image_name})`}
 >
   <h2>{topic.name}</h2>
 </div>
@@ -30,7 +30,8 @@
     margin: 0;
     padding: 20px;
     color: #000;
-    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 28px;
     background-size: cover;
     background-position: center;
     height: 200px;

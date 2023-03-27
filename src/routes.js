@@ -9,6 +9,8 @@ import MCQuestionTest from './MCQuestionTest.svelte';
 import QuizTest from './QuizTest.svelte';
 import TestTest from './TestTest.svelte';
 import ArticleTest from './ArticleTest.svelte';
+import TopicTileTest from './TopicTileTest.svelte';
+import TopicChooserTest from './TopicChooserTest.svelte';
 
 export default {
 	// exact path
@@ -21,6 +23,8 @@ export default {
 	'/test_components/mc': MCQuestionTest,
 	'/test_components/quiz': QuizTest,
 	'/test_components/article': ArticleTest,
-	'/test_components/test': TestTest,
+	// '/test_components/test': TestTest,
+	'/test_components/topic_tile': TopicTileTest,
+	'/test_components/topic_chooser': TopicChooserTest,
 	'*': NotFound,
 }
