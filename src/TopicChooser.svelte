@@ -1,15 +1,21 @@
+<!-- TopicChooser.svelte -->
 <script>
   import { onMount } from 'svelte';
   import TopicTile from './TopicTile.svelte';
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+  function onChoose(event) {
+	  dispatch('choose', event.detail);
+  }
 
   export let units;
   export let topics;
-  export let allow_all_units = true;
-  export let allow_all_topics = true;
+  export let allow_all_units;
+  export let allow_all_topics;
   const all_unit  =  {id: -1, name: 'ALL'}
   const all_topic = {id: -1, unit_id: null, overview: null, name: 'ALL', image_name: null}
   let units_with_all = [all_unit].concat(units)
-  let selectedUnit = -1;
+  let selectedUnit;
   $: topics_in_unit = topics.filter(topic => topic.unit_id===selectedUnit);
   $: topics_with_all = [all_topic].concat(topics_in_unit)
   console.log('selected unit: ', selectedUnit);
@@ -24,10 +30,10 @@
 	{/each}
 </select>
 
-{#if selectedUnit.id !== -1}
+{#if selectedUnit && selectedUnit.id !== -1}
 <div class="topics-container">
   {#each (allow_all_topics ? topics_with_all : topics_in_unit)  as topic}
-	  <TopicTile {topic} />
+	  <TopicTile topic={topic} on:choose={onChoose} />
   {/each}
 </div>
 {/if}
@@ -40,6 +46,14 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     justify-items: center;
+  }
+  select {
+	  width: 100%;
+	  padding: 10px;
+	  border-radius: 5px;
+	  background-color: #fff;
+	  font-size: 24px;
+	  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
 </style>
 

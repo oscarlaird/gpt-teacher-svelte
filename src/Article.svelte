@@ -1,7 +1,8 @@
 <!-- src/Article.svelte -->
 <script>
   import ArticleButtons from './ArticleButtons.svelte';
-  export let topic;
+  import { chosenTopic } from './stores.js';
+  const topic = $chosenTopic
 </script>
 
 <style>

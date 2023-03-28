@@ -1,0 +1,49 @@
+[debug] [2023-03-28T18:56:13.712Z] ----------------------------------------------------------------------
+[debug] [2023-03-28T18:56:13.713Z] Command:       /usr/local/bin/firebase /home/oscar/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase emulators:start --project apgpt-4188e
+[debug] [2023-03-28T18:56:13.713Z] CLI Version:   11.25.1
+[debug] [2023-03-28T18:56:13.713Z] Platform:      linux
+[debug] [2023-03-28T18:56:13.713Z] Node Version:  v16.16.0
+[debug] [2023-03-28T18:56:13.713Z] Time:          Tue Mar 28 2023 12:56:13 GMT-0600 (Mountain Daylight Time)
+[debug] [2023-03-28T18:56:13.713Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-28T18:56:13.751Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-28T18:56:13.751Z] > authorizing via signed-in user (olaird25@gmail.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2023-03-28T18:56:13.754Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-03-28T18:56:13.754Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-03-28T18:56:13.754Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-03-28T18:56:13.757Z] [hub] writing locator at /tmp/hub-apgpt-4188e.json
+[debug] [2023-03-28T18:56:13.768Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/apgpt-4188e/sites 
+[debug] [2023-03-28T18:56:14.645Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/apgpt-4188e/sites 200
+[debug] [2023-03-28T18:56:14.645Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/apgpt-4188e/sites {"sites":[{"name":"projects/apgpt-4188e/sites/apgpt-4188e","defaultUrl":"https://apgpt-4188e.web.app","appId":"1:73254476468:web:56be8fc750318aad8915e1","type":"DEFAULT_SITE"}]}
+[debug] [2023-03-28T18:56:14.646Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/apgpt-4188e/webApps/1:73254476468:web:56be8fc750318aad8915e1/config [none]
+[debug] [2023-03-28T18:56:15.162Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/apgpt-4188e/webApps/1:73254476468:web:56be8fc750318aad8915e1/config 200
+[debug] [2023-03-28T18:56:15.162Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/apgpt-4188e/webApps/1:73254476468:web:56be8fc750318aad8915e1/config {"projectId":"apgpt-4188e","appId":"1:73254476468:web:56be8fc750318aad8915e1","databaseURL":"https://apgpt-4188e-default-rtdb.firebaseio.com","storageBucket":"apgpt-4188e.appspot.com","apiKey":"AIzaSyCpZaTHsR8t7JZBaBLVVv7QNMMghHojo9s","authDomain":"apgpt-4188e.firebaseapp.com","messagingSenderId":"73254476468","measurementId":"G-8CR1R8CKEG"}
+[debug] [2023-03-28T18:56:15.170Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/apgpt-4188e [none]
+[debug] [2023-03-28T18:56:15.577Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/apgpt-4188e 200
+[debug] [2023-03-28T18:56:15.577Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/apgpt-4188e {"projectId":"apgpt-4188e","projectNumber":"73254476468","displayName":"apgpt","name":"projects/apgpt-4188e","resources":{"hostingSite":"apgpt-4188e","realtimeDatabaseInstance":"apgpt-4188e-default-rtdb"},"state":"ACTIVE","etag":"1_d264ec23-6caf-4834-8fe7-8a4f2712a0f8"}
+[info] i  hosting[apgpt-4188e]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[apgpt-4188e]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[warn] ⚠  emulators: The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ 127.0.0.1:5000 │
+└──────────┴────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET / HTTP/1.1" 200 396 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET / HTTP/1.1\" 200 396 \"-\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET /global.css HTTP/1.1" 200 890 "http://127.0.0.1:5000/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET /global.css HTTP/1.1\" 200 890 \"http://127.0.0.1:5000/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET /build/bundle.css HTTP/1.1" 200 - "http://127.0.0.1:5000/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET /build/bundle.css HTTP/1.1\" 200 - \"http://127.0.0.1:5000/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET /build/bundle.js HTTP/1.1" 200 - "http://127.0.0.1:5000/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET /build/bundle.js HTTP/1.1\" 200 - \"http://127.0.0.1:5000/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET /images/apush/cahokia_mounds.jpg HTTP/1.1" 200 126994 "http://127.0.0.1:5000/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET /images/apush/cahokia_mounds.jpg HTTP/1.1\" 200 126994 \"http://127.0.0.1:5000/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET /images/apush/santa_maria_ship.jpg HTTP/1.1" 200 109871 "http://127.0.0.1:5000/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET /images/apush/santa_maria_ship.jpg HTTP/1.1\" 200 109871 \"http://127.0.0.1:5000/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] "GET /build/bundle.js.map HTTP/1.1" 200 - "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Mar/2023:18:56:18 +0000] \"GET /build/bundle.js.map HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0\""}}

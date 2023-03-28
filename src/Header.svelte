@@ -1,30 +1,22 @@
+<!-- Header.svelte -->
 <script>
-  import Login from './Login.svelte';
-  export let courseName;
+  import SignInButton from "./SignInButton.svelte";
+  export let subject;
+  export let userData;
 </script>
+
 <header>
-  <img src="/images/washington_crossing.jpg" alt="Washington Crossing the Delaware" />
-  <h1>{courseName}</h1>
-  <Login />
+  <h1>{subject}</h1>
+  <SignInButton bind:userData />
 </header>
+
 <style>
   header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: #f5f5f5;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
   }
-
-  img {
-    width: 400px;
-    height: 100px;
-    object-fit: cover;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-  }
-
 </style>
+

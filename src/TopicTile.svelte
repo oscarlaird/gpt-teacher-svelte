@@ -1,15 +1,15 @@
 <script>
-  import { push } from 'svelte-spa-router';
   export let topic;
-
-  const handleClick = () => {
-    push(`/topic/${topic.id}`);
-  };
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher()
+  function onClick() {
+	  dispatch('choose', {topic: topic})
+  }
 </script>
 
 <div
+  on:click={onClick}
   class="topic-tile"
-  on:click={handleClick}
   style={`background-image: url(/images/apush/${topic.image_name})`}
 >
   <h2>{topic.name}</h2>
@@ -24,6 +24,7 @@
     overflow: hidden;
     margin-bottom: 20px;
     border: 1px solid #000;
+    cursor: pointer;
   }
 
   .topic-tile h2 {
@@ -38,6 +39,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .topic-tile h2:hover {
+	  background-color: rgba(255, 255, 255, 0.2);
   }
 </style>
 

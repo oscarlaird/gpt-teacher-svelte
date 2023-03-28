@@ -1,83 +1,53 @@
+<!-- Home.svelte -->
 <script>
+  import Header from "./Header.svelte";
+  import ActivityLog from "./ActivityLog.svelte";
+  import { push } from "svelte-spa-router";
+
+  let subject = "AP US History";
+  let activities = []; // This should be fetched based on the user data, for now it's an empty array
+  let userData;
+
+  // Reactive statement to get userData from SignInButton
 </script>
 
-<div class="container">
-  <h1 class="subject-title">AP US History</h1>
-  <button class="login-button">Login</button>
-  <div class="button-group">
-    <button class="button quiz-button">Quiz!</button>
-    <button class="button flashcards-button">Flashcards</button>
-    <button class="button read-button">Read</button>
-  </div>
-  <div class="progress-chart">Progress chart</div>
-  <div class="activity-log">Activity log</div>
+<Header bind:userData subject={subject} />
+
+<div class="buttons-container">
+  <button>Quiz</button>
+  <button>Flashcards</button>
+  <button on:click={() => push('/choose_article')} >Read</button>
+  <button>Progress</button>
 </div>
 
+{#if userData}
+  <ActivityLog {activities} />
+{/if}
+
 <style>
-  .container {
+  .buttons-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
   }
-
-  .subject-title {
-    grid-column: 1 / 4;
-    text-align: center;
+  button {
+    padding: 2rem;
+    font-size: 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
   }
-
-  .login-button {
-    justify-self: end;
+  button:hover {
+    background-color: #0056b3;
   }
-
-  .button-group {
-    grid-column: 1 / 4;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .progress-chart,
-  .activity-log {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 5px;
-  }
-
-  .progress-chart {
-    grid-column: 1 / 3;
-    grid-row: 3;
-  }
-
-  .activity-log {
-    grid-column: 3 / 4;
-    grid-row: 3;
-  }
-
-  @media screen and (max-width: 768px) {
-    .container {
+  @media (max-width: 767px) {
+    .buttons-container {
       grid-template-columns: 1fr;
     }
-    
-    .subject-title {
-      grid-column: 1 / 2;
-    }
-
-   .button-group {
-	   grid-column: 1 / 2;
-}
-.progress-chart {
-  grid-column: 1 / 2;
-  grid-row: 4;
-}
-
-.activity-log {
-  grid-column: 1 / 2;
-  grid-row: 5;
-}
-
-}
+  }
 </style>
 
