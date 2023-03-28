@@ -1,43 +1,34 @@
-<!-- src/components/LoginButton.svelte -->
+<!-- LoginButton.svelte -->
 <script>
-  import { onMount, onDestroy } from "svelte";
-  import { auth } from "./firebase.js"
-  import * as firebaseui from "firebaseui";
-  import "firebaseui/dist/firebaseui.css";
+  import { onMount } from "svelte";
+  import { auth } from "./firebaseApp.js";
+  import { onAuthStateChanged, signOut } from "firebase/auth";
 
   let user = null;
-  let uiInstance;
-
-  const unsubscribe = auth.onAuthStateChanged((u) => {
-    user = u;
-  });
 
   onMount(() => {
-    uiInstance = new firebaseui.auth.AuthUI(auth);
-    uiInstance.start("#firebaseui-auth-container", {
-      signInOptions: [
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
-        // Add other providers as needed
-      ],
-      callbacks: {
-        signInSuccessWithAuthResult: () => false,
-      },
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      user = currentUser;
     });
+
+    return () => {
+      unsubscribe();
+    };
   });
 
-  onDestroy(() => {
-    uiInstance.reset();
-    unsubscribe();
-  });
-
-  function signOut() {
-    auth.signOut();
+  async function signOutUser() {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   }
 </script>
 
 {#if user}
-  <button on:click={signOut}>Hello {user.displayName || 'Oscar'}!</button>
+  <p>Hello {user.displayName || "Oscar"}!</p>
+  <button on:click={signOutUser}>Sign out</button>
 {:else}
-  <div id="firebaseui-auth-container"></div>
+  <a href="/#/signin">Sign in / Sign up</a>
 {/if}
 

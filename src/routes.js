@@ -13,11 +13,13 @@ import TopicTileTest from './TopicTileTest.svelte';
 import TopicChooserTest from './TopicChooserTest.svelte';
 import LoginButtonTest from './LoginButtonTest.svelte';
 import Home from './Home.svelte';
+import SignIn from './SignIn.svelte';
 
 export default {
 	// exact path
 	'/': Home,
 	'/home': Home,
+	'/signin': SignIn,
 	// '/topic/:id': TopicPage,
 	// '/quiz/:id': QuizPage,
 	'/test_components/flashcard': FlashcardTest,
