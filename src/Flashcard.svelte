@@ -1,12 +1,14 @@
 <script>
+  import { fly } from 'svelte/transition';
   export let flipped = false;
   export let question = 'Question?';
   export let answer = 'Answer.';
+  export let fly_direction = 'left';
   const flipCard = () => flipped = !flipped;
 </script>
 
-<div class="card-container" on:click="{flipCard}">
-  <div class="card" class:flipped="{flipped}">
+<div class="card-container" on:click="{flipCard}" >
+	<div class="card" class:flipped="{flipped}">
     <div class="side front">
 	    <h1>{question}</h1>
     </div>
@@ -20,9 +22,9 @@
   .card-container {
     perspective: 1100px;
     height: 80%;
-    max-height: 500px;
     width: 90%;
-    max-width: 900px;
+    max-height: 700px;
+    max-width: 1200px;
     border-radius: 20px;
   }
 

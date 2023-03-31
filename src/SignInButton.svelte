@@ -1,5 +1,6 @@
 <!-- SignInButton.svelte -->
 <script>
+  import './global.css';
   import { push } from "svelte-spa-router";
   import { auth } from "./firebaseApp";
   import { onMount } from "svelte";
@@ -36,21 +37,20 @@
 </script>
 
 {#if userData}
-  <span>Hello, {userData.name} |</span>
-  <button on:click={signOut}>Sign out</button>
+  <button on:click={signOut}>{userData.name} | Sign out</button>
 {:else}
-  <span>Hello, Guest | </span>
-  <button on:click={signIn}>Sign in</button>
+  <button on:click={signIn}>Welcome! | Sign in</button>
 {/if}
 
 <style>
   button {
-    background-color: transparent;
-    border: none;
     cursor: pointer;
-    font-size: 1rem;
-    padding: 0;
-    color: #007bff;
+    font-size: 2rem;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
   }
 </style>
 

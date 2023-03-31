@@ -1,0 +1,19 @@
+/* src/global.css */
+:root {
+  --primary-color: #0C3D56;
+  --secondary-color: #7AB87C;
+  --background-color: #F2F2F2;
+  --text-color: black;
+  --accent-color: none;
+}
+
+b {
+	color: var(--secondary-color);
+}
+
+body {
+	background-color: var(--background-color);
+}
+
+
+

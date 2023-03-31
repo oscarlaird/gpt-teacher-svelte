@@ -1,3 +1,4 @@
+// routes.js
 // TESTS
 import FlashcardTest from './FlashcardTest.svelte';
 import FlashcardReviewTest from './FlashcardReviewTest.svelte';
@@ -10,10 +11,10 @@ import TopicChooserTest from './TopicChooserTest.svelte';
 // CORE
 import Home from './Home.svelte';
 import SignIn from './SignIn.svelte';
-import ArticleChooser from './ArticleChooser.svelte';
-import QuizChooser from './QuizChooser.svelte';
-import FlashcardChooser from './FlashcardChooser.svelte';
+import Chooser from './Chooser.svelte';
 import Article from './Article.svelte';
+import Quiz from './Quiz.svelte';
+import FlashcardReview from './FlashcardReview.svelte';
 import NotFound from './NotFound.svelte';
 
 export default {
@@ -21,8 +22,10 @@ export default {
 	'/': Home,
 	'/home': Home,
 	'/signin': SignIn,
-	'/choose_article': ArticleChooser,
-	'/article': Article,
+	'/article/:unit_id/:topic_id': Article,
+	'/quiz/:unit_id/:topic_id': Quiz,
+	'/flashcards/:unit_id/:topic_id': FlashcardReview,
+	'/choose/:activity_type': Chooser,
 	// '/topic/:id': TopicPage,
 	// '/quiz/:id': QuizPage,
 	// TEST

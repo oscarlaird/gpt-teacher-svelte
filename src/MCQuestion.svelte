@@ -23,7 +23,7 @@ function applyPermutation(arr, perm) {
   export let quizMode; // in quiz mode the selected answer is automatically confirmed
   export let correct;
   let confirmed = false;
-  const permutation = Array.from({length: answers.length}, (_, i) => i).sort(() => Math.random() - 0.5);
+  const permutation = Array.from({length: answers.length}, (_, i) => i).sort(() => Math.random() - 0.5); // random permutation
   const correctAnswerIndex = permutation[0]
   const shuffled_answers = applyPermutation(answers, permutation)
 
@@ -35,7 +35,8 @@ function applyPermutation(arr, perm) {
       selectedAnswer = index;
       if (quizMode) {
 	      confirmed = true
-	      dispatch('confirmed')
+	      console.log('dispatch correct: ', selectedAnswer===correctAnswerIndex)
+	      dispatch('confirmed', {correct: selectedAnswer===correctAnswerIndex})
       }
     }
   };
@@ -96,6 +97,7 @@ function applyPermutation(arr, perm) {
   max-width: 900px;
   border-radius: 20px;
   margin: 10px;
+  background-color: white;
   }
 
 </style>

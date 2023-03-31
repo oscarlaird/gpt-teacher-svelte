@@ -3,51 +3,65 @@
   import Header from "./Header.svelte";
   import ActivityLog from "./ActivityLog.svelte";
   import { push } from "svelte-spa-router";
+  import ImageButton from './ImageButton.svelte';
+
+  let activity_buttons = [
+    {
+      "activity": "quiz",
+      "text": "Quiz",
+      "background_image": "moon_flag.jpg"
+    },
+    {
+      "activity": "flashcards",
+      "text": "Cards",
+      "background_image": "washington_crossing.jpg"
+    },
+    {
+      "activity": "article",
+      "text": "Read",
+      "background_image": "mlk.jpg"
+    }
+  ];  
 
   let subject = "AP US History";
-  let activities = []; // This should be fetched based on the user data, for now it's an empty array
   let userData;
 
-  // Reactive statement to get userData from SignInButton
 </script>
 
 <Header bind:userData subject={subject} />
 
 <div class="buttons-container">
-  <button>Quiz</button>
-  <button>Flashcards</button>
-  <button on:click={() => push('/choose_article')} >Read</button>
-  <button>Progress</button>
+	{#each activity_buttons as a}
+		<ImageButton
+	              on:click={() => push(`/choose/${a.activity}`)}
+	              text={a.text}
+		      background_image={a.background_image}
+		/>
+	{/each}
 </div>
 
 {#if userData}
-  <ActivityLog {activities} />
+  <ActivityLog />
 {/if}
 
 <style>
   .buttons-container {
+    height: min(20vh, 200px);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr); /* Default to two columns on mobile */
+    gap: 0; /* Remove gap on mobile */
+    padding: 0; /* Remove padding on mobile */
+    margin: 0 0;
   }
-  button {
-    padding: 2rem;
-    font-size: 1.5rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #0056b3;
-  }
-  @media (max-width: 767px) {
+
+  /* Media query for desktop screen size */
+  @media (min-width: 768px) { /* Adjust this value based on the breakpoint you consider for desktop */
     .buttons-container {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+      gap: 1rem; /* Add gap between items on desktop */
+      padding: 1rem; /* Add padding on desktop */
     }
   }
+
 </style>
 

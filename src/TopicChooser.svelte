@@ -1,51 +1,63 @@
 <!-- TopicChooser.svelte -->
 <script>
+	import './global.css';
   import { onMount } from 'svelte';
   import TopicTile from './TopicTile.svelte';
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
   function onChoose(event) {
-	  dispatch('choose', event.detail);
+    dispatch('choose', event.detail);
   }
 
-  export let units;
-  export let topics;
-  export let allow_all_units;
-  export let allow_all_topics;
-  const all_unit  =  {id: -1, name: 'ALL'}
-  const all_topic = {id: -1, unit_id: null, overview: null, name: 'ALL', image_name: null}
-  let units_with_all = [all_unit].concat(units)
-  let selectedUnit;
-  $: topics_in_unit = topics.filter(topic => topic.unit_id===selectedUnit);
-  $: topics_with_all = [all_topic].concat(topics_in_unit)
-  console.log('selected unit: ', selectedUnit);
-  console.log('topics_in_unit:', topics_in_unit);
-  console.log('topics_with_all:', topics_with_all);
-
+  export let units = [];
+  export let topics = [];
+  const all_unit = { id: -1, name: 'ALL UNITS' };
+  const all_topic = {
+    id: -1,
+    unit_id: null,
+    overview: null,
+    name: 'ALL TOPICS',
+    image_name: 'all.jpg',
+  };
+  let units_with_all = [all_unit].concat(units);
+  export let selectedUnit = 1; // Set the default value of selectedUnit to the first unit
+  $: topics_in_unit = topics.filter((topic) => topic.unit_id === selectedUnit);
+  $: topics_with_all = [all_topic].concat(topics_in_unit);
+  // $: console.log('topics: ', topics);
+  // $: console.log('selected unit: ', selectedUnit);
+  // $: console.log('topics_in_unit:', topics_in_unit);
+  // $: console.log('topics_with_all:', topics_with_all);
 </script>
 
 <select bind:value={selectedUnit}>
-	{#each (allow_all_units ? units_with_all : units) as unit}
+	{#each units_with_all as unit}
 		<option value={unit.id}>{unit.name}</option>
 	{/each}
 </select>
 
-{#if selectedUnit && selectedUnit.id !== -1}
 <div class="topics-container">
-  {#each (allow_all_topics ? topics_with_all : topics_in_unit)  as topic}
+  {#each topics_with_all as topic}
+	<div class=topics-container-item>
 	  <TopicTile topic={topic} on:choose={onChoose} />
+	</div>
   {/each}
 </div>
-{/if}
 
 <style>
   .topics-container {
     margin-top: 20px;
     margin-bottom: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px;
     justify-items: center;
+  }
+  .topics-container > :first-child {
+	  grid-column: 1 / -1;
+  }
+  .topics-container-item {
+	  width: 100%;
+	  height: 100%;
   }
   select {
 	  width: 100%;
@@ -54,6 +66,8 @@
 	  background-color: #fff;
 	  font-size: 24px;
 	  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	  border-color: var(--secondary-color);
+	  color: var(--secondary-color);
   }
 </style>
 

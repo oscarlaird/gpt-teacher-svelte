@@ -1,45 +1,41 @@
-<!-- TopicTile.svelte -->
+<!-- ImageButton.svelte -->
 <script>
   import './global.css';
-  export let topic;
+  export let background_image;
+  export let text;
+  export let dest;
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher()
-  function onClick() {
-	  dispatch('choose', {topic: topic})
-  }
 </script>
 
 <div
-  on:click={onClick}
+  on:click={() => dispatch('click')}
   class="topic-tile"
-  style={`background-image: url(/images/apush/${topic.image_name})`}
->
-  <h2>{topic.name}</h2>
+  style={`background-image: url(/images/apush/${background_image})`} >
+  <h2>{text}</h2>
 </div>
 
 
 <style>
   .topic-tile {
-    width: 100%;
-    border-radius: 10px;
     overflow: hidden;
-    border: 4px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
     cursor: pointer;
+    background-size: cover;
+    background-position: center;
   }
 
   .topic-tile h2 {
+    height: 100%;
+    width: 100%;
     margin: 0;
-    padding: 20px;
     background-color: rgba(255, 255, 255, 0.6);
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    background-size: cover;
-    background-position: center;
-    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black;
+    color: var(--primary-color);
   text-shadow: 0 0 5px rgba(255, 255, 255, 1.0), /* Horizontal, Vertical, Blur, Color */
                0 0 8px rgba(255, 255, 255, 1.0);
   }
