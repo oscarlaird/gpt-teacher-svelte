@@ -11,8 +11,8 @@ import TopicChooserTest from './TopicChooserTest.svelte';
 // CORE
 import Home from './Home.svelte';
 import SignIn from './SignIn.svelte';
-import Chooser from './Chooser.svelte';
 import Article from './Article.svelte';
+import RandomArticle from './RandomArticle.svelte';
 import Quiz from './Quiz.svelte';
 import FlashcardReview from './FlashcardReview.svelte';
 import NotFound from './NotFound.svelte';
@@ -22,10 +22,10 @@ export default {
 	'/': Home,
 	'/home': Home,
 	'/signin': SignIn,
+	'/article/:unit_id/-1': RandomArticle,
 	'/article/:unit_id/:topic_id': Article,
 	'/quiz/:unit_id/:topic_id': Quiz,
 	'/flashcards/:unit_id/:topic_id': FlashcardReview,
-	'/choose/:activity_type': Chooser,
 	// '/topic/:id': TopicPage,
 	// '/quiz/:id': QuizPage,
 	// TEST

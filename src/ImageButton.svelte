@@ -19,10 +19,11 @@
 <style>
   .topic-tile {
     overflow: hidden;
-    border: 1px solid var(--primary-color);
+    border: 3px solid var(--primary-color);
     cursor: pointer;
     background-size: cover;
     background-position: center;
+    border-radius: 4px;
   }
 
   .topic-tile h2 {

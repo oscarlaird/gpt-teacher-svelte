@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
-const chosenTopic = writable(null);
-const chosenUnit = writable(null); // only for activity logging
+const chosenTopic = writable(17);
+const chosenUnit = writable(3); // only for activity logging
 
 
-export { chosenTopic }
+export { chosenUnit, chosenTopic }

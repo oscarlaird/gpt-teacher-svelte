@@ -1,6 +1,6 @@
 <!-- FlashcardReview.svelte -->
 <script>
-	import { fly } from 'svelte/transition';
+	import { swipe } from 'svelte-gestures';
 	import Flashcard from './Flashcard.svelte';
 	import ActivityLogger from './ActivityLogger.svelte';
 	import ActivityButtons from './ActivityButtons.svelte';
@@ -41,6 +41,24 @@
 
 	const flipCard = () => flipped = !flipped;
 
+	function handleSwipe (event) {
+		const direction = event.detail.direction;
+		if (direction==='right') {
+			prevCard();
+		} else if (direction==='left') {
+			nextCard();
+		};
+	}
+
+	function handleKeypress (event) {
+		if (event.key === ' '){
+			flipCard();
+		} else if (event.keyCode===37) {
+			prevCard();
+		} else if (event.keyCode===39) {
+			nextCard();
+		}
+	}
 
 </script>
 
@@ -69,6 +87,7 @@
   height: 100%;
   background-color: var(--secondary-color);
   border-radius: 20px;
+  min-width: 20px;
   float: left;
 }
 
@@ -81,22 +100,26 @@
 }
 
 button {
-  border-radius: 10px;
-  padding: 0.5rem 1.5rem;
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
   margin: 10px;
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
-  border: 3px solid var(--primary-color);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 
 </style>
 
-<header>
 <ActivityButtons params={params} hideFlashcards={true} />
-</header>
 
-<div class="flashcard-review" >
+<div class="flashcard-review"
+     use:swipe={{timeframe:250, minSwipeDistance: 50}}
+     on:swipe={handleSwipe}
+     on:keydown={handleKeypress}
+     tabindex="0"
+     >
 	<!-- rerender the component when currentCard changes -->
 	{#key currentCard}
 		<Flashcard
@@ -120,6 +143,4 @@ button {
 </div>
 
 <ActivityLogger activity_type=cards params={params} />
-
-
 

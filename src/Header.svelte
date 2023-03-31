@@ -7,8 +7,7 @@
 </script>
 
 <header>
-  <h1>{subject}</h1>
-  <h1>GPT TUTOR</h1>
+  <h3>AP US History</h3>
   <SignInButton bind:userData />
 </header>
 
@@ -17,8 +16,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
     color: var(--secondary-color);
   }
 </style>

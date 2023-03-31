@@ -20,7 +20,8 @@ function applyPermutation(arr, perm) {
   export let questionObj;
   const question = questionObj.question;
   const answers = questionObj.answers;
-  export let quizMode; // in quiz mode the selected answer is automatically confirmed
+  const explanation = questionObj.explanation;
+  export let quizMode = true; // in quiz mode the selected answer is automatically confirmed
   export let correct;
   let confirmed = false;
   const permutation = Array.from({length: answers.length}, (_, i) => i).sort(() => Math.random() - 0.5); // random permutation
@@ -53,6 +54,10 @@ function applyPermutation(arr, perm) {
         class:chosen={!confirmed && index === selectedAnswer}
         on:click={() => selectAnswer(index)} >
         {answer}
+	{#if confirmed && index===correctAnswerIndex && index!==selectedAnswer}
+		<hr>
+	        {explanation}
+	{/if}
       </li>
     {/each}
   </ul>

@@ -1,6 +1,7 @@
 <script>
   import './global.css';
   import { onMount } from 'svelte';
+  import ActivityLogger from './ActivityLogger.svelte';
   import ActivityButtons from './ActivityButtons.svelte';
   export let params;
 
@@ -42,33 +43,32 @@
 
 </script>
 
-{#if quizFinished}
 <ActivityButtons params={params} hideQuiz={true} />
-{/if}
 
 <div class="quiz-header">
   <div class="timer">
     <strong>{time_message}</strong>
   </div>
   {#if quizFinished}
-  <div class=score style:color={score ? 'green' : 'var(--secondary-color)'}>
+  <div class=score style:color={score ? 'var(--primary-color)' : 'var(--secondary-color)'}>
     +{score}
   </div>
   {/if}
   <div>
-    <span style="color: green">{numCorrect}</span>/{numAnswered}
+    <span style="color: var(--primary-color)">{numCorrect}</span>/{numAnswered}
   </div>
 </div>
 
+<ActivityLogger activity_type=quiz accuracy={numCorrect/numAnswered} score={score} params={params} />
 
 <style>
   .quiz-header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    padding: 2rem;
+    padding: 1rem;
     background-color: white;
     border-bottom: 1px solid #ccc;
     color: var(--secondary-color);

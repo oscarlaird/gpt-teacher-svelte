@@ -1,18 +1,29 @@
 /* src/global.css */
 :root {
-  --primary-color: #0C3D56;
+  /* --primary-color: #0C3D56;
   --secondary-color: #7AB87C;
   --background-color: #F2F2F2;
-  --text-color: black;
-  --accent-color: none;
+  --text-color: black; */
+  --primary-color: #B22234;
+  --secondary-color: #3C3B6E;
+  --background-color: #F0F0F0;
 }
 
-b {
+b, strong {
 	color: var(--secondary-color);
 }
 
 body {
 	background-color: var(--background-color);
+	padding: 10;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+@media screen and (min-width: 800px) {
+	html {
+		font-size: 200%;
+	}
 }
 
 

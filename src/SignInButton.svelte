@@ -44,10 +44,11 @@
 
 <style>
   button {
+    display: inline-block;
+    vertical-align: middle;
     cursor: pointer;
-    font-size: 2rem;
-    padding: 20px;
-    border-radius: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
     background-color: white;
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);

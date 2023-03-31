@@ -23,16 +23,17 @@
     width: 100%;
     max-height: 500px;
     object-fit: cover;
-    margin-top: 50px;
-    margin-bottom: 1rem;
-    border: 3px solid black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid black;
   }
 
   .overview {
-    font-size: 1.4rem;
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 1.4;
     margin-bottom: 80px;
   }
+
   .overview b {
 	  color: var(--secondary-color);
   }
@@ -41,9 +42,9 @@
   }
 </style>
 
-<ActivityButtons hideArticle={true} params={params} {topic} />
 
 <div class="article-container">
+<ActivityButtons hideArticle={true} params={params} {topic} />
   <img src={`/images/apush/${topic.image_name}`} alt={topic.title} />
   <h1> {topic.name} </h1>
   <div class="overview" >

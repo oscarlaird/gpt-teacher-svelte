@@ -1,7 +1,6 @@
 <!-- Quiz.svelte -->
 <script>
   import MCQuestion from './MCQuestion.svelte';
-  import ActivityLogger from './ActivityLogger.svelte';
   import ActivityButtons from './ActivityButtons.svelte';
   import QuizHeader from './QuizHeader.svelte';
   import { fade } from 'svelte/transition';
@@ -9,8 +8,6 @@
   import { topics, MC as all_questions } from './cached_api.js';
   export let params = {};
   let quizFinished = false;
-  let score = 0;
-  let accuracy = 0;
   const uid = parseInt(params.unit_id);
   const tid = parseInt(params.topic_id);
   const chosen_topics = uid === -1 ? topics.map(t => t.id) :
@@ -59,4 +56,3 @@
   {/each}
 </div>
 
-<ActivityLogger activity_type=quiz accuracy={numCorrect/numAnswered} score={score} params={params} />

@@ -24,7 +24,6 @@
     height: 80%;
     width: 90%;
     max-height: 700px;
-    max-width: 1200px;
     border-radius: 20px;
   }
 
@@ -49,24 +48,19 @@
     border-radius: 20px;
   }
 
-  .front h1,
-  .back h1 {
-    font-size: 40px;
+  .front, .back {
+    background-color: white;
+    color: black;
+    font-size: 0.8rem;
     text-align: center;
   }
 
-  .front {
-    background-color: white;
-    color: black;
-  }
-
   .back {
-    background-color: white;
-    color: black;
     transform: rotateY(180deg);
   }
 
   .flipped {
     transform: rotateY(180deg);
   }
+
 </style>

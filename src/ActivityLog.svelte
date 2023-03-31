@@ -1,6 +1,6 @@
 <script>
   import { activities } from './activities_api.js';
-  $: reversed_activities = [...$activities].reverse();
+  $: reversed_activities = [...$activities].reverse().slice(0,10);
   function floatToPercent(value) {
     return `${(value * 100).toFixed(0)}%`;
   }
@@ -21,10 +21,12 @@
 
 </script>
 
+<h3> Total Score: {$activities.reduce((accumulator, current) => accumulator+current.score, 0)} </h3>
+<h3> Quiz High Score: {$activities.reduce((highest, current) => current.score > highest && current.activity_type==='quiz' ? current.score : highest, 0)} </h3>
+
 <table>
   <thead>
     <tr>
-      <th></th>
       <th></th>
       <th>Unit</th>
       <th>Topic</th>
@@ -36,7 +38,6 @@
   <tbody>
     {#each reversed_activities as activity (activity.id)}
       <tr>
-	      <td>{activity.date}</td>
 	      <td>{activity.activity_type}</td>
 	      <td>{activity.unit===-1 ?  'ALL': activity.unit }</td>
 	      <td>{activity.topic===-1 ? 'ALL': activity.topic}</td>
@@ -52,12 +53,17 @@
   table {
     border-collapse: collapse;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.5rem;
+  }
+
+  @media (min-width: 800px) {
+	  table {
+		  font-size: 1rem;
+	  }
   }
 
   th,
   td {
-    padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }

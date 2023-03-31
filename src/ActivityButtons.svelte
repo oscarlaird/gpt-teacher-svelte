@@ -1,4 +1,4 @@
-<!-- src/ArticleButtons.svelte -->
+<!-- src/ActivityButtons.svelte -->
 <script>
   import './global.css';
   import { push } from 'svelte-spa-router';
@@ -13,25 +13,24 @@
 
 <style>
   .buttons-container {
-    width: 100%;
+    padding: 10px;
+    margin: 0 0 0 0;
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
-    border: 1px solid #ccc;
   }
 
   button {
     background-color: none;
-    border: 4px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 0.5rem 1.5rem;
+    padding: 0.25rem 0.5rem;
     text-align: center;
-    font-size: 3rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    border-radius: 12px;
     transition-duration: 0.3s;
-    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   button:hover {
@@ -40,10 +39,10 @@
   }
 </style>
 
-<div class="buttons-container" >
+<header class="buttons-container" >
   <button on:click={() => push(`/home`)}>  Home</button>
   {#if !hideFlashcards}
-  <button on:click={() => push(`/flashcards/${uid}/${tid}`)}> Flashcards</button>
+  <button on:click={() => push(`/flashcards/${uid}/${tid}`)}> Cards</button>
   {/if}
   {#if !hideArticle}
   <button  on:click={() => push(   `/article/${uid}/${tid}`)}> Article</button>
@@ -51,5 +50,5 @@
   {#if !hideQuiz}
   <button  on:click={() => push(`/quiz/${uid}/${tid}`)}>  Quiz</button>
   {/if}
-</div>
+</header>
 

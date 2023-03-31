@@ -1,10 +1,12 @@
 <!-- Home.svelte -->
 <script>
+  import TopicChooser from './TopicChooser.svelte';
   import Header from "./Header.svelte";
+  import About from './About.svelte';
   import ActivityLog from "./ActivityLog.svelte";
   import { push } from "svelte-spa-router";
   import ImageButton from './ImageButton.svelte';
-
+  import { chosenUnit, chosenTopic } from './stores.js';
   let activity_buttons = [
     {
       "activity": "quiz",
@@ -28,29 +30,40 @@
 
 </script>
 
+<div class=home-container>
 <Header bind:userData subject={subject} />
 
 <div class="buttons-container">
 	{#each activity_buttons as a}
 		<ImageButton
-	              on:click={() => push(`/choose/${a.activity}`)}
+				on:click={() => push(`/${a.activity}/${$chosenUnit}/${$chosenTopic}`)}
 	              text={a.text}
 		      background_image={a.background_image}
 		/>
 	{/each}
 </div>
 
+<TopicChooser bind:chosen_uid={$chosenUnit}
+	      bind:chosen_tid={$chosenTopic} />
+
+<hr>
 {#if userData}
   <ActivityLog />
 {/if}
+</div>
+<hr>
+<About/>
+<hr>
 
 <style>
+  hr {
+	  margin: 20px 0;
+  }
   .buttons-container {
     height: min(20vh, 200px);
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Default to two columns on mobile */
-    gap: 0; /* Remove gap on mobile */
-    padding: 0; /* Remove padding on mobile */
+    gap: 15px; /* Remove gap on mobile */
     margin: 0 0;
   }
 
@@ -58,8 +71,6 @@
   @media (min-width: 768px) { /* Adjust this value based on the breakpoint you consider for desktop */
     .buttons-container {
       grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
-      gap: 1rem; /* Add gap between items on desktop */
-      padding: 1rem; /* Add padding on desktop */
     }
   }
 
