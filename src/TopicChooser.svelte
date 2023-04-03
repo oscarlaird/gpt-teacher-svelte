@@ -1,22 +1,22 @@
 <!-- TopicChooser.svelte -->
 <script>
-	import './global.css';
+  import './global.css';
   import { onMount } from 'svelte';
   import { units, topics } from './cached_api.js';
   import TopicTile from './TopicTile.svelte';
   export let chosen_tid;
   export let chosen_uid;
   const all_unit = { id: -1, name: 'ALL UNITS' };
-  const all_topic = {
+  $: all_topic = {
     id: -1,
     unit_id: null,
     overview: null,
-    name: 'ALL TOPICS',
+    name: `${chosen_uid===-1 ? 'ALL UNITS' : 'UNIT '+chosen_uid}: ALL TOPICS`,
     image_name: 'all.jpg',
   };
 	
-  let units_with_all = [all_unit].concat(units);
-  $: topics_in_unit = topics.filter((topic) => topic.unit_id === chosen_uid);
+  $: units_with_all = $units.concat([all_unit])
+  $: topics_in_unit = $topics.filter((topic) => topic.unit_id === chosen_uid);
   $: topics_with_all = topics_in_unit.concat([all_topic]);
   // $: console.log('topics: ', topics);
   // $: console.log('selected unit: ', chosen_uid);
@@ -47,7 +47,7 @@
     display: grid;
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(3, min(15vh, 180px));
-    gap: 15px;
+    gap: 0.5rem;
     justify-items: center;
   }
   .topics-container > :last-child {

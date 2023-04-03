@@ -1,9 +1,7 @@
 <script>
-  import { fly } from 'svelte/transition';
   export let flipped = false;
   export let question = 'Question?';
   export let answer = 'Answer.';
-  export let fly_direction = 'left';
   const flipCard = () => flipped = !flipped;
 </script>
 

@@ -19,7 +19,8 @@ function applyPermutation(arr, perm) {
 
   export let questionObj;
   const question = questionObj.question;
-  const answers = questionObj.answers;
+  console.log('parsing answers: ', questionObj.answers);
+  const answers = JSON.parse(questionObj.answers);
   const explanation = questionObj.explanation;
   export let quizMode = true; // in quiz mode the selected answer is automatically confirmed
   export let correct;

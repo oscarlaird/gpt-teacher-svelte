@@ -4,11 +4,11 @@
   import ActivityButtons from './ActivityButtons.svelte';
   import ActivityLogger from './ActivityLogger.svelte';
   import { topics } from './cached_api.js';
+  import { chosenSubject } from './stores.js';
   export let params = {}; // filled in from the url
 
   console.log(JSON.stringify(params))
-  $: topic = topics.find(t => t.id === parseInt(params.topic_id))
-  $: console.log('topics: ', topics)
+  $: topic = $topics.find(t => t.id === parseInt(params.topic_id))
   $: console.log('topic: ', topic)
   
 </script>
@@ -45,13 +45,14 @@
 
 <div class="article-container">
 <ActivityButtons hideArticle={true} params={params} {topic} />
-  <img src={`/images/apush/${topic.image_name}`} alt={topic.title} />
+{#if topic}
+<img src={`/images/${$chosenSubject.short_name}/${topic.image_name}`} alt={topic.title} />
   <h1> {topic.name} </h1>
   <div class="overview" >
     {@html topic.overview}
   </div>
-
 <ActivityLogger params={params} activity_type=article />
+{/if}
 </div>
 
 

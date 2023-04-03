@@ -1,6 +1,6 @@
 <!-- ActivityLogger.svelte -->
 <script>
-  import { validate_activity, appendActivity }  from './activities_api.js';
+  import { appendActivity }  from './activities_api.js';
   import { onDestroy } from 'svelte';
 
   export let activity_type;

@@ -2,21 +2,20 @@
 <script>
   import './global.css';
   import SignInButton from "./SignInButton.svelte";
-  export let subject;
+  import SubjectChooser from "./SubjectChooser.svelte";
   export let userData;
 </script>
 
 <header>
-  <h3>AP US History</h3>
+  <SubjectChooser />
   <SignInButton bind:userData />
 </header>
 
 <style>
   header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
     color: var(--secondary-color);
   }
 </style>
-

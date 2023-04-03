@@ -9,12 +9,13 @@
 	export let params = {};
 	const uid = parseInt(params.unit_id);
 	const tid = parseInt(params.topic_id);
-       const chosen_topics = uid === -1 ? topics.map(t => t.id) :
-                             tid === -1 ? topics
+        $: chosen_topics = uid === -1 ? $topics.map(t => t.id) :
+                             tid === -1 ? $topics
                               .filter(t => t.unit_id === uid)
                               .map(t => t.id) :
                             [tid];
-	const cards = all_cards
+	console.log('all cards ', $all_cards);
+	$: cards = $all_cards
 			      .filter(c => chosen_topics.includes(c.topic_id))
 			      .sort(() => Math.random() - 0.5);
 
@@ -75,7 +76,8 @@
     width: 50%;
     height: 40px;
     border-radius: 20px;
-    margin: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -92,11 +94,8 @@
 }
 
 .progress-text {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	font-size: 2rem;
+	margin: 1rem;
 }
 
 button {
@@ -113,7 +112,7 @@ button {
 </style>
 
 <ActivityButtons params={params} hideFlashcards={true} />
-
+{#if currentCard}
 <div class="flashcard-review"
      use:swipe={{timeframe:250, minSwipeDistance: 50}}
      on:swipe={handleSwipe}
@@ -128,19 +127,16 @@ button {
 				bind:flipped
 		/>
 	{/key}
-
   <div class="progress-bar">
-	  <div class="progress-bar-inner" style:width={percentage}>
-		  <span class='progress-text'>{progress}</span>
-	  </div>
+	  <div class="progress-bar-inner" style:width={percentage} />
   </div>
-
+  <div class='progress-text'>{progress}</div>
   <div>
     <button on:click="{prevCard}">Previous</button>
     <button on:click="{flipCard}">Flip</button>
     <button on:click="{nextCard}">Next</button>
   </div>
 </div>
-
 <ActivityLogger activity_type=cards params={params} />
+{/if}
 

@@ -5,17 +5,17 @@
   import QuizHeader from './QuizHeader.svelte';
   import { fade } from 'svelte/transition';
   import { flip } from 'svelte/animate';
-  import { topics, MC as all_questions } from './cached_api.js';
+  import { topics, mc as all_questions } from './cached_api.js';
   export let params = {};
   let quizFinished = false;
   const uid = parseInt(params.unit_id);
   const tid = parseInt(params.topic_id);
-  const chosen_topics = uid === -1 ? topics.map(t => t.id) :
-                        tid === -1 ? topics
+  const chosen_topics = uid === -1 ? $topics.map(t => t.id) :
+                        tid === -1 ? $topics
                          .filter(t => t.unit_id === uid)
                          .map(t => t.id) :
                        [tid];
-  const questions = all_questions
+  $: questions = $all_questions
 	              .filter(q => chosen_topics.includes(q.topic_id))
                       .sort(() => Math.random() - 0.5);
   console.log('chosen topics: ', chosen_topics)
@@ -48,6 +48,7 @@
 </style>
 
 <QuizHeader params={params} quizFinished={quizFinished} numCorrect={numCorrect} numAnswered={numAnswered} />
+{#if visible_questions}
 <div class="quiz-container">
   {#each visible_questions as questionObj (questionObj.question)}
   <div in:fade={{duration: 500}} animate:flip={{duration: 500}} >
@@ -55,4 +56,4 @@
   </div>
   {/each}
 </div>
-
+{/if}

@@ -39,7 +39,7 @@
 {#if userData}
   <button on:click={signOut}>{userData.name} | Sign out</button>
 {:else}
-  <button on:click={signIn}>Welcome! | Sign in</button>
+  <button on:click={signIn}>Guest | Sign in</button>
 {/if}
 
 <style>
@@ -47,11 +47,10 @@
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
-    font-size: 1rem;
-    border-radius: 5px;
-    background-color: white;
-    color: var(--secondary-color);
+    font-size: 0.75rem;
+    background-color: var(--background-color);
     border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
   }
 </style>
 

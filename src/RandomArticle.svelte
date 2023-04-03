@@ -8,9 +8,9 @@
 
 	export let params = {};
 	let uid = parseInt(params.unit_id)===-1 ?
-		  getRandom(units).id :
+		  getRandom($units).id :
 		  parseInt(params.unit_id);
-	let tid = getRandom(topics.filter(t => t.unit_id===uid)).id;
+	let tid = getRandom($topics.filter(t => t.unit_id===uid)).id;
 	replace(`/article/${uid}/${tid}`)
 
 </script>

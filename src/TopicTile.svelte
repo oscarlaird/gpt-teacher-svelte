@@ -1,18 +1,23 @@
 <!-- TopicTile.svelte -->
 <script>
   import './global.css';
+  import { chosenSubject, flash } from './stores.js';
   export let topic;
   export let chosen_tid;
   function onClick() {
-	  chosen_tid = topic.id;
+	  if (chosen_tid===topic.id) {
+	    flash.set(true);  // if the user clicks again, flash the activity buttons
+	  } else {
+	    chosen_tid = topic.id;
+	  }
+
   }
 </script>
 
 <div
   on:click={onClick}
-  title={topic.image_name}
   class={topic.id===chosen_tid ? 'topic-tile selected' : 'topic-tile'}
-  style={`background-image: url(/images/apush/${topic.image_name})`}
+		style={`background-image: url(/images/${$chosenSubject.short_name}/${topic.image_name})`}
 >
 <div class='inner'>{topic.name}</div>
 </div>
@@ -39,13 +44,13 @@
     user-select: none;
     height: 100%;
     margin: 0;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4px;
+    padding: 2px;
     color: black;
     background-color: rgba(255, 255, 255, 0.6);
     text-shadow: 0 0 5px rgba(255, 255, 255, 1.0), /* Horizontal, Vertical, Blur, Color */

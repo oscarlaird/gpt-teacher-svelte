@@ -4,25 +4,26 @@
   import Header from "./Header.svelte";
   import About from './About.svelte';
   import ActivityLog from "./ActivityLog.svelte";
+  import Commento from "./Commento.svelte";
   import { push } from "svelte-spa-router";
   import ImageButton from './ImageButton.svelte';
-  import { chosenUnit, chosenTopic } from './stores.js';
+  import { chosenSubjectId, chosenUnit, chosenTopic } from './stores.js';
   let activity_buttons = [
     {
-      "activity": "quiz",
-      "text": "Quiz",
-      "background_image": "moon_flag.jpg"
+      "activity": "article",
+      "text": "Read",
+      "background_image": "article.jpg"
     },
     {
       "activity": "flashcards",
       "text": "Cards",
-      "background_image": "washington_crossing.jpg"
+      "background_image": "cards.jpg"
     },
     {
-      "activity": "article",
-      "text": "Read",
-      "background_image": "mlk.jpg"
-    }
+      "activity": "quiz",
+      "text": "Quiz",
+      "background_image": "quiz.jpg"
+    },
   ];  
 
   let subject = "AP US History";
@@ -35,8 +36,8 @@
 
 <div class="buttons-container">
 	{#each activity_buttons as a}
-		<ImageButton
-				on:click={() => push(`/${a.activity}/${$chosenUnit}/${$chosenTopic}`)}
+		<ImageButton 
+		         	on:click={() => push(`/${a.activity}/${$chosenUnit}/${$chosenTopic}`)}
 	              text={a.text}
 		      background_image={a.background_image}
 		/>
@@ -47,6 +48,8 @@
 	      bind:chosen_tid={$chosenTopic} />
 
 <hr>
+
+
 {#if userData}
   <ActivityLog />
 {/if}
@@ -54,6 +57,9 @@
 <hr>
 <About/>
 <hr>
+{#key chosenSubjectId}
+<Commento />
+{/key}
 
 <style>
   hr {
@@ -63,7 +69,7 @@
     height: min(20vh, 200px);
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Default to two columns on mobile */
-    gap: 15px; /* Remove gap on mobile */
+    gap: 0.5rem; /* Remove gap on mobile */
     margin: 0 0;
   }
 

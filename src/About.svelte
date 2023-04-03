@@ -23,5 +23,5 @@
     </p>
   </section>
 <section>
-(The preceding paragraphs, like everything else on this site is written by GPT4.)
+(The preceding paragraphs, like all the content on this site is written by GPT4.)
 </section>
